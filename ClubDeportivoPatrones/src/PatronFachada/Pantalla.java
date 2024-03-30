@@ -4,25 +4,15 @@ package PatronFachada;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Scanner;
-import logicaNegocio.Cliente;
-import logicaNegocio.Grupo;
-import logicaNegocio.Participante;
-import logicaNegocio.Reserva;
 import poo.io.IO;
 
 public class Pantalla {
     
-    private Control ctrl;
-    
-    private Cliente c;
-    private Reserva r;
-    private Participante p;
-    //private Incidencia i;
-    private Grupo g;
+    Control ctrl = new Control();
 
-    public Pantalla(Control ctrl) {
-		this.ctrl = ctrl;
-	}
+    Cliente c;
+    Reserva r;
+    Grupo g;
     
     public void mostrarMenuPrincipal() {
         
@@ -84,7 +74,7 @@ public class Pantalla {
         Scanner s = new Scanner(System.in);
         int opc = -1;
         
-        //Comunicado c = new Comunicado();
+        Comunicado c = new Comunicado();
         String salida;
         
         String tituloCom;

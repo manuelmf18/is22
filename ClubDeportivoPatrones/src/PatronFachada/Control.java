@@ -4,31 +4,20 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.*;
 import java.util.Date;
-
-import PatronFachada.*;
-import PatronObservador.*;
-import PatronSingleton.*;
-import clubdeportivopatrones.*;
-//import PatronDecorador.*;
-//import PatronFactoria.*;
-import logicaNegocio.*;
-
-
+import clubdeportivo.Futbol;
 
 public class Control {
     
-    private ClubDeportivo cD;
+    public ClubDeportivo cD = new ClubDeportivo();
     
-    private Cliente c;
-    private Reserva r;
-    private Participante p;
-    //private Incidencia i;
-    private Grupo g;
+    Cliente c;
+    Reserva r;
+    Participante p;
+    Incidencia i;
+    Grupo g;
     
 
-    public Control(ClubDeportivo cD) {
-        this.cD = cD;
-
+    public Control() {
     }
     
     
@@ -70,7 +59,7 @@ public class Control {
     
     public Reserva introducePista(String id_R,LocalDate fecha, int hora, int numParticipantes, TipoPista tipoPista){
 
-        this.r = new Reserva(id_R,fecha,hora,numParticipantes,tipoPista);
+        this.r = new Reserva (id_R,fecha,hora,numParticipantes,tipoPista);
         
         this.cD.añadirReserva(r);
         return this.r;
@@ -97,7 +86,7 @@ public class Control {
         
     }
     
-/*INCIDENCIAS:   
+//INCIDENCIAS:   
     
     public void introducirIncidencia (TipoPista tipoPista, String incidencia){
         
@@ -106,7 +95,7 @@ public class Control {
         cD.añadirIncidencia(i);
 
     }
-*/
+
 
 //ACTIVIDADES:
     
@@ -183,13 +172,13 @@ public class Control {
         TipoPista p = null;
         
         if (opc == 1){
-            p = TipoPista.FUTBOL;
+            p = cD.futbol;
             
         }else if (opc == 2){
-            p = TipoPista.BALONCESTO;
+            p = cD.baloncesto;
                     
         }else if (opc == 3){
-            p = TipoPista.PADEL;
+            p = cD.padel;
         }
         
         return p;
