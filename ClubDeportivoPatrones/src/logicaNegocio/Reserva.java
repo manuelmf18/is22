@@ -3,8 +3,9 @@ package logicaNegocio;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import PatronEstrategia.*;
 
-public class Reserva {
+public abstract class Reserva {
     
     private String id_Reserva; // (dni)
     private LocalDate fecha;
@@ -13,6 +14,7 @@ public class Reserva {
     private TipoPista tipoPista;
     private Double precio;
     public List <Participante> listaParticipantes = new ArrayList ();
+    private PrecioComportamiento precioComportamiento;
 
     
     public Reserva(String id_Reserva, LocalDate fecha, Integer hora, Integer numParticipantes, TipoPista tipoPista) {
@@ -21,6 +23,22 @@ public class Reserva {
         this.hora = hora;
         this.numParticipantes = numParticipantes;
         this.tipoPista = tipoPista;
+        
+        switch (tipoPista) {
+            case FUTBOL:
+                precioComportamiento = new PrecioFutbol();
+                break;
+            case PADEL:
+                precioComportamiento = new PrecioPadel();
+                break;
+            case BALONCESTO:
+                precioComportamiento = new PrecioBaloncesto();
+                break;
+            default:
+                break;
+        }
+        
+        ejecutarPrecio();
     }
 
     public Reserva() {
@@ -73,6 +91,18 @@ public class Reserva {
 
     public void setPrecio(Double precio) {
         this.precio = precio;
+    }
+
+    public PrecioComportamiento getPrecioComportamiento() {
+        return precioComportamiento;
+    }
+
+    public void setPrecioComportamiento(PrecioComportamiento precioComportamiento) {
+        this.precioComportamiento = precioComportamiento;
+    }
+    
+    public void ejecutarPrecio() {
+        this.precio = precioComportamiento.calcularPrecio(this.precio, this.numParticipantes);
     }
 
     @Override
