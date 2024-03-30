@@ -11,6 +11,7 @@ public class Reserva {
     private Integer hora; // solo se pueden hacer reservas en hora entera (12:00,15:00,20:00)
     private Integer numParticipantes;
     private TipoPista tipoPista;
+    private Double precio;
     public List <Participante> listaParticipantes = new ArrayList ();
 
     
@@ -64,6 +65,14 @@ public class Reserva {
 
     public void addListaParticipantes(Participante participante) {
         this.listaParticipantes.add(participante);
+    }
+
+    public Double getPrecio() {
+        return precio;
+    }
+
+    public void setPrecio(Double precio) {
+        this.precio = precio;
     }
 
     @Override
